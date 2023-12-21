@@ -5,7 +5,7 @@ import com.vittorfraga.domain.validation.ValidationHandler;
 
 import java.time.Instant;
 
-public class ParkingLot extends AggregateRoot<ParkingLotID> {
+public class ParkingLot extends AggregateRoot<ParkingLotID> implements Cloneable {
 
     private String name;
     private String CNPJ;
@@ -121,5 +121,14 @@ public class ParkingLot extends AggregateRoot<ParkingLotID> {
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';
+    }
+
+    @Override
+    public ParkingLot clone() {
+        try {
+            return (ParkingLot) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
